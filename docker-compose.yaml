@@ -1,0 +1,62 @@
+
+version: '3.8'
+
+services:
+  service_a:
+    build:
+      context: ./service-a
+      dockerfile: Dockerfile
+    networks:
+      - app_network
+
+  envoy_a:
+    image: envoyproxy/envoy:v1.32-latest
+    container_name: envoy_a
+    ports:
+      - "10000:15000"  # Map common Envoy port to host for Service A
+    volumes:
+      - ./service-a/envoy-config.yaml:/etc/envoy/envoy-config.yaml
+    command: "/usr/local/bin/envoy -c /etc/envoy/envoy-config.yaml --log-level info"
+    networks:
+      - app_network
+
+  service_b:
+    build:
+      context: ./service-b
+      dockerfile: Dockerfile
+    networks:
+      - app_network
+
+  envoy_b:
+    image: envoyproxy/envoy:v1.32-latest
+    container_name: envoy_b
+    ports:
+      - "10001:15000"  # Map common Envoy port to host for Service B
+    volumes:
+      - ./service-b/envoy-config.yaml:/etc/envoy/envoy-config.yaml
+    command: "/usr/local/bin/envoy -c /etc/envoy/envoy-config.yaml --log-level info"
+    networks:
+      - app_network
+
+  service_c:
+    build:
+      context: ./service-c
+      dockerfile: Dockerfile
+    networks:
+      - app_network
+
+  envoy_c:
+    image: envoyproxy/envoy:v1.32-latest
+    container_name: envoy_c
+    ports:
+      - "10002:15000"  # Map common Envoy port to host for Service C
+    volumes:
+      - ./service-c/envoy-config.yaml:/etc/envoy/envoy-config.yaml
+    command: "/usr/local/bin/envoy -c /etc/envoy/envoy-config.yaml --log-level info"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
