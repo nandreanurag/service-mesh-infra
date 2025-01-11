@@ -1,0 +1,12 @@
+[Unit]
+Description=SPIRE Agent
+After=network.target
+
+[Service]
+User=spire
+Group=spire
+ExecStart=/opt/spire/bin/spire-agent run -config /opt/spire/conf/agent/spire-agent.conf
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

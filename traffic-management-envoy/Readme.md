@@ -1,6 +1,6 @@
 # Traffic and Route Management with Envoy Proxy
 
-This folder demonstrates **traffic management** and **route handling** using Envoy as a sidecar proxy for containerized web applications.
+This folder demonstrates **traffic management** and **route handling** using Envoy as a sidecar proxy for containerized web applications using static resources.
 
 ## Overview
 
