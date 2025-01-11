@@ -86,6 +86,7 @@ The architecture includes:
 
 2. **Set Up SPIRE Agent**:
    - Place spire-agent-service.service at /etc/systemd/system/spire-agent-service.service
+   - Place ./spire-server/spire-agent.conf at /opt/spire/conf/server/spire-agent.conf
    - Copy the trust bundle from the server to the agent:
      ```bash
      scp -i trust_bundle-agent.pem  /server-path/to/trust_bundle.pem ec2-user@agent-public-ip:/path/to/trust_bundle.pem
