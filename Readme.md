@@ -26,6 +26,17 @@ This repository is organized into folders, with each folder dedicated to a speci
      - Docker plugin for workload attestation.
    - Technologies: SPIRE, Envoy, Flask, Docker, AWS EC2.
 
+2. **[eks-ec2-mtls-with-spire](./eks-ec2-mtls-with-spire)**
+   - Demonstrates mutual TLS (mTLS) and traffic management between heterogenous workloads on **EKS** and **EC2** using Istio and SPIRE.
+   - **Features**:
+     - Secure communication between EKS workloads and EC2 instances with Envoy proxies.
+     - SPIRE-SERVER runs on a VM and acts as a Certificate Authority (CA) to issue and manage certificates for both environments.
+     - EKS Ingress Gateway to route traffic from EC2 to Kubernetes services.
+     - Istio as control plane 
+     - Dynamic certificate provisioning via SPIRE's SDS.
+   - **Technologies**: SPIRE, Envoy, Kubernetes (EKS), Flask, Docker, AWS EC2.
+
+
 ### Upcoming Use Cases
 
 The following use cases will be added soon:
