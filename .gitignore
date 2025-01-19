@@ -18,3 +18,6 @@ crash.*.log
 # to change depending on the environment.
 *.tfvars
 *.tfvars.json
+
+*.spire-kubeconfig.yaml
+*spire-kubeconfig.yaml
