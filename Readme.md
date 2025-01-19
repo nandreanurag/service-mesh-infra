@@ -47,10 +47,17 @@ The following use cases will be added soon:
   - Implement rate limiting policies and fine-grained access control using Istio and Envoy.
 - **Observability and Tracing**
   - Explore logging, metrics, and distributed tracing with Prometheus, Grafana, and OpenTelemetry.
-- **Service-to-Service Communication on Kubernetes**
-  - Demonstrate Istio-based mTLS and traffic management in Kubernetes.
 - **Advanced Traffic Splitting**
   - Traffic shaping with canary deployments with heterogeneous environment and A/B testing.
+- **Managing Service Mesh on VMs with Dynamic Envoy Resources**
+  - Demonstrate service mesh management for workloads running on virtual machines (VMs).
+  - Use **xDS API** to dynamically configure Envoy proxies with a custom control plane server.
+  - Integrate a service registry like **Eureka** or **Consul** to discover and manage services.
+  - Showcase dynamic resource updates such as clusters, endpoints, routes, and listeners in Envoy.
+- **Adding a Virtual Machine (VM) to a Service Mesh**
+  - Extend the service mesh to include VMs alongside containerized workloads.
+  - Integrate the VM into an existing service mesh (e.g., Istio) with **SPIRE** for identity and mTLS.
+  - Demonstrate service discovery and routing between the VM and mesh workloads.
 
 
 ## Getting Started
