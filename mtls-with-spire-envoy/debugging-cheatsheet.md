@@ -53,3 +53,18 @@ curl -v \
   --cert svid.pem \
   --key  key.pem \
     https://public-ip-of-agent:10000/serviceA
+
+
+
+# Inspect Envoy Configuration: Check the Envoy configuration to ensure mTLS is set up
+
+kubectl exec -it test-pod-with-label -c istio-proxy -- curl localhost:15000/config_dump | jq '.configs[] | select(.dynamic_active_secrets != null)'
+
+
+sudo chown -R spire:spire /opt/spire
+
+# view spire server trust bundle
+/opt/spire/bin/spire-server bundle show
+
+# scp folder
+scp -r -i ec2-ssh.pem /Users/anuragnandre/Documents/envoy/envoy-practice/service-mesh-infra/mtls-with-spire-envoy  ec2-user@54.147.203.80:/home/ec2-user

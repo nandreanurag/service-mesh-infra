@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Script to create SPIRE registration entries manually
+
+if [[ -z $1 ]]; then
+    echo "Error: cluster id should be provided as parameter"
+    exit 1;
+fi
+
+# bookinfo details
+kubectl exec -ti spire-server-0 -n spire -c spire-server -- /opt/spire/bin/spire-server entry create \
+          -spiffeID spiffe://example.org/ns/default/sa/bookinfo-details \
+          -parentID spiffe://example.org/spire/agent/k8s_psat/eks-ec2-mtls-with-spire-istio/51950c83-36aa-40c9-be05-189e567ec8be \
+          -selector k8s:ns:default \
+          -selector k8s:sa:bookinfo-details \
+          -selector k8s:pod-label:app:details \
+          -selector k8s:pod-image:docker.io/istio/examples-bookinfo-details-v1:1.16.2
+
+# bookinfo ratings
+kubectl exec -ti spire-server-0 -n spire -c spire-server -- /opt/spire/bin/spire-server entry create \
+          -spiffeID spiffe://example.org/ns/default/sa/bookinfo-ratings \
+           -parentID spiffe://example.org/spire/agent/k8s_psat/eks-ec2-mtls-with-spire-istio/51950c83-36aa-40c9-be05-189e567ec8be\
+          -selector k8s:ns:default \
+          -selector k8s:sa:bookinfo-ratings \
+          -selector k8s:pod-image:docker.io/istio/examples-bookinfo-ratings-v1:1.16.2
+
+# bookinfo reviews
+kubectl exec -ti spire-server-0 -n spire -c spire-server -- /opt/spire/bin/spire-server entry create \
+          -spiffeID spiffe://example.org/ns/default/sa/bookinfo-reviews \
+          -parentID spiffe://example.org/spire/agent/k8s_psat/eks-csye7125/d5077295-75d8-4e61-bdfc-d243f86bc145 \
+          -selector k8s:ns:default \
+          -selector k8s:sa:bookinfo-reviews \
+          -selector k8s:pod-label:app:reviews
+
+# bookinfo productpage
+kubectl exec -ti spire-server-0 -n spire -c spire-server -- /opt/spire/bin/spire-server entry create \
+          -spiffeID spiffe://example.org/ns/default/sa/bookinfo-productpage \
+          -parentID spiffe://example.org/spire/agent/k8s_psat/eks-csye7125/d5077295-75d8-4e61-bdfc-d243f86bc145\
+          -selector k8s:ns:default \
+          -selector k8s:sa:bookinfo-productpage \
+          -selector k8s:pod-label:app:productpage \
+          -selector k8s:pod-image:docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
+
+# istio ingress-gateway
+kubectl exec -ti spire-server-0 -n spire -c spire-server -- 
+
+
+sudo /opt/spire/bin/spire-server entry create \
+          -parentID spiffe://example.org/spire/agent/k8s_psat/eks-csye7125/ab6ae2b9-cb92-4c31-a806-5b8a0a1da761 \
+          -spiffeID spiffe://example.org/ns/default/sa/test-pod-sa \
+          -selector k8s:ns:default \
+          -selector k8s:sa:test-pod-sa \
+          -selector k8s:pod-label:app:test-pod-with-label
+
+-socketPath /run/spire/sockets/server.sock \
+
+
+sudo /opt/spire/bin/spire-server entry create  \
+          -parentID spiffe://example.org/spire/agent/k8s_psat/eks-ec2-mtls-with-spire-istio/51950c83-36aa-40c9-be05-189e567ec8be \
+          -spiffeID spiffe://example.org/ns/istio-system/sa/istio-ingressgateway-service-account \
+          -selector k8s:ns:istio-system \
+          -selector k8s:sa:istio-ingressgateway-service-account \
+          -selector k8s:pod-label:app:istio-ingressgateway
+
+
+# pid=57919 selectors="[type:\"k8s\" value:\"sa:istio-ingressgateway-service-account\" type:\"k8s\" value:\"ns:istio-system\" type:\"k8s\" value:\"node-name:ip-10-1-1-194.ec2.internal\" type:\"k8s\" value:\"pod-uid:762c871d-6a81-4cdd-882d-ab527fdcbbab\" type:\"k8s\" value:\"pod-name:istio-ingressgateway-d7cdc5b65-nr75m\" type:\"k8s\" value:\"pod-image-count:1\" type:\"k8s\" value:\"pod-init-image-count:1\" type:\"k8s\" value:\"pod-image:docker.io/istio/proxyv2@sha256:445156b5f4a780242d079a47b7d88199cbbb5959c92358469b721af490eca1ae\" type:\"k8s\" value:\"pod-image:docker.io/istio/proxyv2:1.24.2\" type:\"k8s\" value:\"pod-init-image:docker.io/library/busybox@sha256:71b79694b71639e633452f57fd9de40595d524de308349218d9a6a144b40be02\" type:\"k8s\" value:\"pod-init-image:docker.io/library/busybox:1.36\" type:\"k8s\" value:\"pod-label:app:istio-ingressgateway\" type:\"k8s\" value:\"pod-label:app.kubernetes.io/managed-by:Helm\" type:\"k8s\" value:\"pod-label:app.kubernetes.io/version:1.24.2\" type:\"k8s\" value:\"pod-label:chart:gateways\" type:\"k8s\" value:\"pod-label:heritage:Tiller\" type:\"k8s\" value:\"pod-label:app.kubernetes.io/name:istio-ingressgateway\" type:\"k8s\" value:\"pod-label:release:istio\" type:\"k8s\" value:\"pod-label:service.istio.io/canonical-revision:latest\" type:\"k8s\" value:\"pod-label:sidecar.istio.io/inject:false\" type:\"k8s\" value:\"pod-label:app.kubernetes.io/part-of:istio\" type:\"k8s\" value:\"pod-label:helm.sh/chart:istio-ingress-1.24.2\" type:\"k8s\" value:\"pod-label:install.operator.istio.io/owning-resource:unknown\" type:\"k8s\" value:\"pod-label:pod-template-hash:d7cdc5b65\" type:\"k8s\" value:\"pod-label:service.istio.io/canonical-name:istio-ingressgateway\" type:\"k8s\" value:\"pod-label:app.kubernetes.io/instance:istio\" type:\"k8s\" value:\"pod-label:istio:ingressgateway\" type:\"k8s\" value:\"pod-label:istio.io/rev:default\" type:\"k8s\" value:\"pod-label:operator.istio.io/component:IngressGateways\" type:\"k8s\" value:\"pod-owner:ReplicaSet:istio-ingressgateway-d7cdc5b65\" type:\"k8s\" value:\"pod-owner-uid:ReplicaSet:c98d7c64-8783-44e4-a655-02994a791cd5\" type:\"k8s\" value:\"container-name:istio-proxy\" type:\"k8s\" value:\"container-image:docker.io/istio/proxyv2@sha256:445156b5f4a780242d079a47b7d88199cbbb5959c92358469b721af490eca1ae\" type:\"k8s\" value:\"container-image:docker.io/istio/proxyv2:1.24.2\"]" subsystem_name=workload_attestor
+# time="2025-01-16T20:25:09Z" level=debug msg="Received StreamSecrets request" 

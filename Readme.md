@@ -39,7 +39,7 @@ The following use cases will be added soon:
 - **Service-to-Service Communication on Kubernetes**
   - Demonstrate Istio-based mTLS and traffic management in Kubernetes.
 - **Advanced Traffic Splitting**
-  - Traffic shaping with canary deployments and A/B testing.
+  - Traffic shaping with canary deployments with heterogeneous environment and A/B testing.
 
 
 ## Getting Started

@@ -1,0 +1,16 @@
+# custom-values.yaml
+spire-server:
+  enabled: false
+
+spiffe-oidc-discovery-provider:
+  enabled: false
+
+
+spire-agent:
+  server:
+    address: "10.1.1.230"
+    port: 8081
+
+global:
+  spire:
+    clusterName: "eks-ec2-mtls-with-spire-istio"
