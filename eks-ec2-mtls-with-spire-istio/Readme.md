@@ -1,3 +1,7 @@
+
+![Architecture Diagram](./eks-ec2-mtls-with-spire-istio/architecture-diagram/eks_mtls_architecture.png)
+
+
 1. Terraform apply
 2. helm upgrade --install -n spire-server spire-crds spire-crds --repo https://spiffe.github.io/helm-charts-hardened/ --create-namespace
 3. helm upgrade spire helm-charts/spire -n spire-server -f spire-values.yaml   
