@@ -1,5 +1,5 @@
 
-![Architecture Diagram](./eks-ec2-mtls-with-spire-istio/architecture-diagram/eks_mtls_architecture.png)
+![Architecture Diagram](./architecture-diagram/eks_mtls_architecture.png)
 
 
 1. Terraform apply
