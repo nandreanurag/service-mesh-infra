@@ -11,14 +11,14 @@ This repository is organized into folders, with each folder dedicated to a speci
 
 ### Current Contents
 
-1. **[traffic-management-envoy](./traffic-management-envoy)**
+1. **[traffic-management-envoy](./traffic-management-envoy/Readme.md)**
    - Demonstrates traffic management and routing using Envoy as a proxy for three Flask-based web applications.
    - Features:
      - Load balancing and request redirection.
      - Configurable routing for dynamic traffic control.
    - Technologies: Flask, Docker, Envoy.
 
-2. **[mtls-with-spire](./mtls-with-spire)**
+2. **[mtls-with-spire](./mtls-with-spire-envoy/Readme.md)**
    - Implements mutual TLS (mTLS) using SPIRE for certificate management and secure service-to-service communication.
    - Features:
      - Node and workload attestation using SPIRE.
@@ -26,7 +26,7 @@ This repository is organized into folders, with each folder dedicated to a speci
      - Docker plugin for workload attestation.
    - Technologies: SPIRE, Envoy, Flask, Docker, AWS EC2.
 
-2. **[eks-ec2-mtls-with-spire](./eks-ec2-mtls-with-spire)**
+2. **[eks-ec2-mtls-with-spire](./eks-ec2-mtls-with-spire-istio/Readme.md)**
    - Demonstrates mutual TLS (mTLS) and traffic management between heterogenous workloads on **EKS** and **EC2** using Istio and SPIRE.
    - **Features**:
      - Secure communication between EKS workloads and EC2 instances with Envoy proxies.
